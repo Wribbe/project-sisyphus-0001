@@ -36,7 +36,18 @@ main(void)
   );
 
   XMapWindow(display, window);
+  XSelectInput(display, window, ExposureMask | KeyPressMask);
+  XEvent event = {0};
 
   for(;;) {
+    XNextEvent(display, &event);
+    switch(event.type) {
+      case KeyPress:
+        printf("Key press.\n");
+        break;
+      case KeyRelease:
+        printf("%s\n", "Key released");
+        break;
+    }
   }
 }
