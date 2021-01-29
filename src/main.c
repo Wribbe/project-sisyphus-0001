@@ -21,18 +21,18 @@ main(void)
   );
 
   Window window = XCreateWindow(
-    display,
-    XDefaultRootWindow(display),
-    0,
-    0,
-    800,
-    600,
-    1,
-    XDefaultDepth(display, 0),
-    InputOutput,
-    XDefaultVisual(display, 0),
-    0,
-    0
+    display
+    ,XDefaultRootWindow(display)
+    ,0
+    ,0
+    ,800
+    ,600
+    ,1
+    ,XDefaultDepth(display, 0)
+    ,InputOutput
+    ,XDefaultVisual(display, 0)
+    ,0
+    ,0
   );
 
   XMapWindow(display, window);
