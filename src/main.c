@@ -12,4 +12,31 @@ main(void)
     int width = XDisplayWidth(display, i);
     printf("Screen[%d] -- width: %d\n", i, width);
   }
+  /* Try out som default methods. */
+  printf(
+     "XDefaultDepth: %d\n"
+     "XDefaultScreen: %d\n"
+     ,XDefaultDepth(display, 0)
+     ,XDefaultScreen(display)
+  );
+
+  Window window = XCreateWindow(
+    display,
+    XDefaultRootWindow(display),
+    0,
+    0,
+    800,
+    600,
+    1,
+    XDefaultDepth(display, 0),
+    InputOutput,
+    XDefaultVisual(display, 0),
+    0,
+    0
+  );
+
+  XMapWindow(display, window);
+
+  for(;;) {
+  }
 }
