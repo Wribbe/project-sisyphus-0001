@@ -35,6 +35,32 @@ main(void)
     ,0
   );
 
+
+//GLXFBConfig *
+//glXChooseFBConfig(
+//  Display * display
+//  ,int screen
+//  ,const int * attrib_list,
+//  ,int * nelements
+//);
+
+
+//XVisualInfo *
+//glXGetVisualFromFBConfig(
+//  Display * display
+//  ,GLXFBConfig config
+//);
+
+
+//GLXContext
+//glXCreateContext(
+//  Display * display
+//  ,XVisualInfo * visual
+//  ,GLXContext share_list
+//  ,Bool direct
+//);
+
+
   XMapWindow(display, window);
   XSelectInput(display, window, ExposureMask | KeyPressMask);
   XEvent event = {0};
