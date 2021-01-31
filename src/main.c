@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include <X11/Xlib.h>
+#include <GL/glx.h>
 
 int
 main(void)
@@ -36,29 +37,38 @@ main(void)
   );
 
 
-//GLXFBConfig *
-//glXChooseFBConfig(
-//  Display * display
-//  ,int screen
-//  ,const int * attrib_list,
-//  ,int * nelements
-//);
+  //GLXFBConfig *
+  //glXChooseFBConfig(
+  //  Display * display
+  //  ,int screen
+  //  ,const int * attrib_list, /* NULL-terminated array w. (opt, val) pairs */
+  //  ,int * nelements          /* Number of elements returned by function. */
+  //);
 
 
-//XVisualInfo *
-//glXGetVisualFromFBConfig(
-//  Display * display
-//  ,GLXFBConfig config
-//);
+  int num_configs = 0;
+  GLXFBConfig * config = glXChooseFBConfig(display, 0, NULL, &num_configs);
+  if (config == NULL) {
+    printf("%s\n", "glXGetFBConfig returned NULL, aborting.");
+    return (EXIT_FAILURE);
+  }
 
 
-//GLXContext
-//glXCreateContext(
-//  Display * display
-//  ,XVisualInfo * visual
-//  ,GLXContext share_list
-//  ,Bool direct
-//);
+
+  //XVisualInfo *
+  //glXGetVisualFromFBConfig(
+  //  Display * display
+  //  ,GLXFBConfig config
+  //);
+
+
+  //GLXContext
+  //glXCreateContext(
+  //  Display * display
+  //  ,XVisualInfo * visual
+  //  ,GLXContext share_list
+  //  ,Bool direct
+  //);
 
 
   XMapWindow(display, window);
