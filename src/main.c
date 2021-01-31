@@ -4,6 +4,7 @@
 #include <X11/Xlib.h>
 #include <GL/glx.h>
 
+
 int
 main(void)
 {
@@ -74,8 +75,6 @@ main(void)
     }
   }
 
-
-
   //GLXContext
   //glXCreateContext(
   //  Display * display
@@ -84,6 +83,14 @@ main(void)
   //  ,Bool direct
   //);
 
+
+  GLXContext context = glXCreateContext(display, visual, 0, 1);
+  glXMakeCurrent(display, window, context);
+
+  int glx_major= 0, glx_minor = 0;
+  glXQueryVersion(display, &glx_major, &glx_minor);
+
+  printf("Running on GLX %d.%d\n", glx_major, glx_minor);
 
   XMapWindow(display, window);
   XSelectInput(display, window, ExposureMask | KeyPressMask);
