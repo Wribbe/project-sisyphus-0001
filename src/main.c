@@ -3,6 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <GL/glx.h>
+#include <GL/gl.h>
 
 
 int
@@ -91,6 +92,12 @@ main(void)
   glXQueryVersion(display, &glx_major, &glx_minor);
 
   printf("Running on GLX %d.%d\n", glx_major, glx_minor);
+
+  int gl_major = 0, gl_minor = 0;
+  glGetIntegerv(GL_MAJOR_VERSION, &gl_major);
+  glGetIntegerv(GL_MINOR_VERSION, &gl_minor);
+
+  printf("Running context with OpenGL version %d.%d\n", gl_major, gl_minor);
 
   XMapWindow(display, window);
   XSelectInput(display, window, ExposureMask | KeyPressMask);
