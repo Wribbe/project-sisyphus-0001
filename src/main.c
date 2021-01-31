@@ -52,7 +52,7 @@ main(void)
     printf("%s\n", "glXGetFBConfig returned NULL, aborting.");
     return (EXIT_FAILURE);
   }
-
+  printf("Got %d, configs.\n", num_configs);
 
 
   //XVisualInfo *
@@ -60,6 +60,20 @@ main(void)
   //  Display * display
   //  ,GLXFBConfig config
   //);
+
+  XVisualInfo * visual = NULL;
+  for (int i=0; i<num_configs; i++) {
+    visual = glXGetVisualFromFBConfig(display, config[i]);
+    if (visual != NULL) {
+      printf("Found visual that matched configuration: %d\n", i);
+      break;
+    }
+    if (i+1 == num_configs) {
+      printf("%s\n", "No visual matching the config, aborting.");
+      return EXIT_FAILURE;
+    }
+  }
+
 
 
   //GLXContext
