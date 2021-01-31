@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 #include <X11/Xlib.h>
-#include <GL/glx.h>
 #include <GL/gl.h>
+#include <GL/glx.h>
 
 
 int
@@ -98,6 +98,21 @@ main(void)
   glGetIntegerv(GL_MINOR_VERSION, &gl_minor);
 
   printf("Running context with OpenGL version %d.%d\n", gl_major, gl_minor);
+
+  printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+//  float * data_triangle = {
+//    0.0f, 1.0f, 0.0f,
+//    1.0f, 0.0f, 0.0f,
+//    0.0f, 1.0f, 0.0f,
+//  };
+//
+  const char * source_vertex =
+  "#version 460"
+  "layout(location=0) in vertices;"
+  ;
+
+  GLuint shader_vertex = glCreateShader(GL_VERTEX_SHADER);
 
   XMapWindow(display, window);
   XSelectInput(display, window, ExposureMask | KeyPressMask);
